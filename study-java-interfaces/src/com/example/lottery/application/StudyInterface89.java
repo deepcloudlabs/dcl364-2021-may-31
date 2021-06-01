@@ -53,7 +53,6 @@ class A implements Fun {
 
 	@Override
 	public int fun() {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 

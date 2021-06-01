@@ -7,6 +7,7 @@ import java.util.List;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 
+@SuppressWarnings("serial")
 @Named("lottery")
 @SessionScoped
 // Passivation scoped defined bean must be passivation capable
