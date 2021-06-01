@@ -1,8 +1,6 @@
 package com.example.lottery.application;
 
-import java.io.FileInputStream;
 import java.lang.reflect.Proxy;
-import java.util.Properties;
 
 import com.example.handler.AuditHandler;
 import com.example.handler.ProfileHandler;
