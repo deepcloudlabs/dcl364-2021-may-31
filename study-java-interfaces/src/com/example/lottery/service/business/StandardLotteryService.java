@@ -25,6 +25,7 @@ public class StandardLotteryService implements LotteryService {
 		this.randomNumberService = randomNumberService;
 	}
 
+	@SuppressWarnings("unused")
 	@Override
 	public List<Integer> draw(int max, int size) {
 		var numbers = new ArrayList<Integer>(size);

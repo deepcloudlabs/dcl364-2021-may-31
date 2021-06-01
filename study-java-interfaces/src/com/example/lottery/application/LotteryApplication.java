@@ -14,7 +14,7 @@ public class LotteryApplication {
 		properties.load(new FileInputStream("application.properties"));
 		var serviceClassName = properties.getProperty("random.number.service");
 		var clazz = Class.forName(serviceClassName);
-		var randomNumberService = (RandomNumberService) clazz.newInstance();
+		var randomNumberService = (RandomNumberService) clazz.getDeclaredConstructor().newInstance();
 		LotteryService lotteryService = new StandardLotteryService(randomNumberService);
 		lotteryService.draw(60, 6, 10)
 		              .forEach(System.out::println);
