@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Lottery Web Application</title>
+<script type="text/javascript" src="js/lib/knockout-3.5.1.debug.js"></script>
+<script type="text/javascript" src="js/model.js"></script>
+</head>
+<body>
+    <label for="column">Column:</label> 
+    <input type="text" id="column" data-bind="value: column" >
+	<button data-bind="click: draw">Draw</button>
+	<button data-bind="click: reset">Reset</button>
+	<p></p>
+	<table>
+		<thead>
+			<tr>
+				<th>Column #1</th>
+				<th>Column #2</th>
+				<th>Column #3</th>
+				<th>Column #4</th>
+				<th>Column #5</th>
+				<th>Column #6</th>
+			</tr>
+		</thead>
+		<tbody data-bind="foreach: {data: numbers, as: 'nums'}">
+		    <tr  data-bind="foreach: {data: nums, as: 'num'}">
+		        <td data-bind="text: num"></td>
+		    </tr>
+		</tbody>
+	</table>
+	
+</body>
+</html>
