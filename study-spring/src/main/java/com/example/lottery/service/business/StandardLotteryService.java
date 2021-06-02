@@ -9,6 +9,8 @@ import javax.inject.Singleton;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.example.lottery.aop.Audit;
+import com.example.lottery.aop.Profile;
 import com.example.lottery.service.LotteryService;
 import com.example.lottery.service.QualityLevel;
 import com.example.lottery.service.RandomNumberService;
@@ -20,6 +22,8 @@ import com.example.lottery.service.ServiceQuality;
 //@Scope("singleton") // default scope
 @Named
 @Singleton
+@Audit
+@Profile
 public class StandardLotteryService implements LotteryService {
 	@Autowired
     @ServiceQuality(QualityLevel.SECURE)	

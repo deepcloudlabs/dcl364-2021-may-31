@@ -7,11 +7,14 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.example.lottery.aop.Audit;
+import com.example.lottery.aop.Profile;
 import com.example.lottery.model.LotteryModel;
 import com.example.lottery.service.LotteryService;
 
 @Controller
 @RequestMapping("/command")
+@Profile
 public class LotteryController  {
     @Autowired
     private LotteryModel lotteryModel;
@@ -19,11 +22,13 @@ public class LotteryController  {
     private LotteryService lotteryService;
     
     @GetMapping
+    @Audit
 	public String home(){
          return "home";
 	}
     
     @ModelAttribute("lottery") // JSP: ${lottery}
+    @Audit
     public LotteryModel getLotteryModel() {
 		return lotteryModel;
 	}
