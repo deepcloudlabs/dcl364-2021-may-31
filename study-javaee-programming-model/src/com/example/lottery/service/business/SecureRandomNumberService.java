@@ -7,11 +7,15 @@ import javax.enterprise.inject.Alternative;
 import javax.inject.Named;
 import javax.inject.Singleton;
 
+import com.example.lottery.aop.Audit;
+import com.example.lottery.aop.Profile;
 import com.example.lottery.service.RandomNumberService;
 
 @Named
 @Singleton
 @Alternative
+@Audit
+@Profile
 public class SecureRandomNumberService implements RandomNumberService {
 
 	private Random random = new SecureRandom();

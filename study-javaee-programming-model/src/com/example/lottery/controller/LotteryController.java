@@ -26,7 +26,8 @@ public class LotteryController extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        var command = request.getParameter("command");
+        System.err.println("doPost: "+lotteryService.getClass().getName());
+		var command = request.getParameter("command");
         switch (command.toLowerCase()) {
 		case "draw":
 			var column = 1;

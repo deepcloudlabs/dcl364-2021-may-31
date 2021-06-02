@@ -7,4 +7,10 @@
        <alternatives>
           <class>com.example.lottery.service.business.SecureRandomNumberService</class>
        </alternatives>
+       <interceptors>
+          <class>com.example.lottery.aop.AuditAspect</class>
+          <class>com.example.lottery.aop.ProfileAspect</class>       
+          <!--   
+          -->
+       </interceptors>
 </beans>

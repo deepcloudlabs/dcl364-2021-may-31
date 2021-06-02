@@ -6,11 +6,15 @@ import javax.enterprise.inject.Default;
 import javax.inject.Named;
 import javax.inject.Singleton;
 
+import com.example.lottery.aop.Audit;
+import com.example.lottery.aop.Profile;
 import com.example.lottery.service.RandomNumberService;
 
 @Named
 @Singleton
 @Default
+@Audit
+@Profile
 public class FastRandomNumberService implements RandomNumberService {
 
 	@Override
