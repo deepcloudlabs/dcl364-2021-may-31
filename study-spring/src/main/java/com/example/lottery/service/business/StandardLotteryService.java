@@ -8,15 +8,11 @@ import javax.inject.Named;
 import javax.inject.Singleton;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Service;
 
 import com.example.lottery.service.LotteryService;
 import com.example.lottery.service.QualityLevel;
 import com.example.lottery.service.RandomNumberService;
 import com.example.lottery.service.ServiceQuality;
-
-import jdk.jfr.Name;
 
 // Spring 
 // Scope: Scope("singleton"), @RequestScope === @Scope("request") , @SessionScope === @Scope("session"), @Scope("prototype")

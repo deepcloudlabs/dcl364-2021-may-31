@@ -7,11 +7,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.example.lottery.aop.Audit;
 import com.example.lottery.model.LotteryModel;
 import com.example.lottery.service.LotteryService;
-import com.example.lottery.service.QualityLevel;
-import com.example.lottery.service.ServiceQuality;
 
 @Controller
 @RequestMapping("/command")
