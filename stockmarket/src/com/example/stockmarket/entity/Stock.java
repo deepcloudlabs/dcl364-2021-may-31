@@ -17,7 +17,7 @@ import javax.persistence.Table;
 public class Stock {
 	@Id
 	private String symbol;
-	@Column(name = "desc")
+	@Column(name = "aciklama")
 	private String description;
 	private String company;
 	@Column(name = "fiyat")
@@ -25,6 +25,15 @@ public class Stock {
 
 	public Stock() {
 	}
+
+	public Stock(String symbol, String description, String company, double price) {
+		this.symbol = symbol;
+		this.description = description;
+		this.company = company;
+		this.price = price;
+	}
+
+
 
 	public String getSymbol() {
 		return symbol;

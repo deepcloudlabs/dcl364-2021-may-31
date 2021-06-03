@@ -17,14 +17,31 @@ import com.example.stockmarket.repository.StockRepository;
 public class JpaStockRepository implements StockRepository {
 	@PersistenceContext(unitName = "stockmarketPU")
 	private EntityManager entityManager;
-
+	/*
+	@Inject
+	private UserTransaction ut;
+	*/
+	
 	@Override
 	public Optional<Stock> findByIdentity(String symbol) {
+		/*
+		try {
+			ut.begin();
+
+			ut.commit();
+		} catch (Exception e1) {
+			try {
+				ut.rollback();
+			} catch (IllegalStateException | SecurityException | SystemException e) {
+				e.printStackTrace();
+			}
+		}
+		*/
 		return Optional.ofNullable(entityManager.find(Stock.class, symbol));
 	}
 
 	@Override
-	public Collection<Stock> findAll(String key, int pageNo, int pageSize) {
+	public Collection<Stock> findAll(int pageNo, int pageSize) {
 		var offset = pageNo * pageSize;
 		return entityManager.createNamedQuery("Stock.findAll", Stock.class).setFirstResult(offset)
 				.setMaxResults(pageSize).getResultList();
@@ -47,6 +64,10 @@ public class JpaStockRepository implements StockRepository {
 		var updatedStock = managedStock.get();
 		updatedStock.setPrice(stock.getPrice());
 		updatedStock.setCompany(stock.getCompany());
+		/*
+		entityManager.merge(updatedStock);
+		entityManager.flush();
+		*/
 		return updatedStock;
 	}
 

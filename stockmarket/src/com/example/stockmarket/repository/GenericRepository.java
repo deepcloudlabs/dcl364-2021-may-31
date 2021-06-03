@@ -5,7 +5,7 @@ import java.util.Optional;
 
 public interface GenericRepository<E,K> {
 	Optional<E> findByIdentity(K key);
-	Collection<E> findAll(K key,int pageNo,int pageSize);
+	Collection<E> findAll(int pageNo,int pageSize);
 	E create(E e);
 	E update(E e);
 	Optional<E> removeByIdentity(K key);	

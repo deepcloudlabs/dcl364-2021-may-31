@@ -8,10 +8,10 @@
 		<jta-data-source>java:/jdbc/stockmarketDS</jta-data-source>
 		<class>com.example.stockmarket.entity.Stock</class>
 		<properties>
-			<!-- <property name="hibernate.show_sql" value="true" /> -->
-			<!-- <property name="hibernate.format_sql" value="true" /> -->
-			<!-- <property name="hibernate.generate_statistics" value="true"/> -->
-			<!-- <property name="hibernate.hbm2ddl.auto" value="update" /> -->
+			<property name="hibernate.show_sql" value="true" />
+			<property name="hibernate.format_sql" value="true" />
+			<property name="hibernate.generate_statistics" value="true"/> 
+			<property name="hibernate.hbm2ddl.auto" value="update" /> 
 		</properties>
 	</persistence-unit>
 </persistence>
