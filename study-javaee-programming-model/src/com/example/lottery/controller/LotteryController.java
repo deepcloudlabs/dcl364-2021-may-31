@@ -26,24 +26,32 @@ public class LotteryController extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        System.err.println("doPost: "+lotteryService.getClass().getName());
-		var command = request.getParameter("command");
-        switch (command.toLowerCase()) {
-		case "draw":
-			var column = 1;
-			try {
-				column = Integer.parseInt(request.getParameter("column"));
-			} catch (NumberFormatException e) {	}
-			lotteryModel.getNumbers().addAll(lotteryService.draw(60, 6, column));
-			break;
-		case "reset":
-			lotteryModel.getNumbers().clear();
-			break;
-
-		default:
-			break;
-		}
-        doGet(request, response);
+        var asyncContext = request.startAsync();
+        asyncContext.start(() -> {
+        	System.err.println("doPost: "+lotteryService.getClass().getName());
+        	var command = request.getParameter("command");
+        	switch (command.toLowerCase()) {
+        	case "draw":
+        		var column = 1;
+        		try {
+        			column = Integer.parseInt(request.getParameter("column"));
+        		} catch (NumberFormatException e) {	}
+        		lotteryModel.getNumbers().addAll(lotteryService.draw(60, 6, column));
+        		break;
+        	case "reset":
+        		lotteryModel.getNumbers().clear();
+        		break;
+        		
+        	default:
+        		break;
+        	}
+        	try {
+				request.getRequestDispatcher("home.jsp").forward(request, response);
+			} catch (ServletException | IOException e) {
+				e.printStackTrace();
+			} 
+        	asyncContext.complete();
+        });
 	}
 
 }

@@ -1,9 +1,13 @@
 package com.example.lottery.service.business;
 
 import java.util.List;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Future;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
+import javax.annotation.Resource;
+import javax.enterprise.concurrent.ManagedExecutorService;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.inject.Singleton;
@@ -21,24 +25,35 @@ import com.example.lottery.service.RandomNumberService;
 public class StandardLotteryService implements LotteryService {
 	@Inject
 	private RandomNumberService randomNumberService;
+	@Resource
+	private ManagedExecutorService mes;
 	
 	@Override
 	@Profile
 	public List<List<Integer>> draw(int max, int size, int column) {
 		return IntStream.range(0, column)
 				        .mapToObj( i -> this.draw(max,size))
-				        .collect(Collectors.toList());
+				        .collect(Collectors.toList())
+				        .stream()
+				        .map(future -> {
+				        	List<Integer> numbers = List.of();
+				        	try {
+								numbers = future.get();
+							} catch (InterruptedException | ExecutionException e) { }
+				        	return numbers;
+				        }).collect(Collectors.toList());
 	}
 
 	@Override
-	public List<Integer> draw(int max, int size) {
-		return IntStream.generate( () -> randomNumberService.generate(max))
+	public Future<List<Integer>> draw(int max, int size) {
+		return mes.submit(() -> IntStream.generate( () -> randomNumberService.generate(max))
 				        .distinct()
 				        .limit(size)
 				        .sorted()
 				        .boxed()
 				        .parallel()
-				        .collect(Collectors.toList());
+				        .collect(Collectors.toList())
+				   );
 	}
 
 }
