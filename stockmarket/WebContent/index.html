@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Stockmarket</title>
+<style type="text/css">
+@import url('css/bootstrap.css');
+@import url('css/bootstrap-theme.css');
+</style>
+<script type="text/javascript" src="js/lib/jquery-1.11.3.js"></script>
+<script type="text/javascript" src="js/lib/bootstrap.js"></script>
+<script type="text/javascript" src="js/lib/knockout-3.4.0.js"></script>
+<script type="text/javascript" src="js/stock.js"></script>
+<script type="text/javascript">
+   let vm= new StockViewModel();
+   $('document').ready(function(){
+      ko.applyBindings(vm);
+   });
+</script>
+</head>
+<body>
+	<div class="container" role="main">
+		<p></p>
+		<div class="panel panel-primary">
+			<div class="panel-heading">
+				<h3 class="panel-title">Stock</h3>
+			</div>
+			<div class="panel-body">
+				<div class="form-group">
+					<label for="symbol">Symbol</label> 
+					<input type="text"
+					     data-bind="value: symbol"
+						class="form-control" id="symbol" />
+				</div>
+				<div class="form-group">
+					<label for="company">Company</label> 
+					<input type="text"
+					     data-bind="value: company"
+						class="form-control" id="company" />
+				</div>
+				<div class="form-group">
+					<label for="description">Description</label> 
+					<input type="text"
+					     data-bind="value: description"
+						class="form-control" id="description" />
+				</div>
+				<div class="form-group">
+					<label for="price">Price</label> 
+					<input type="text"
+					     data-bind="value: price"
+						class="form-control" id="price" />
+				</div>
+				<div class="form-group">
+					<button
+					    data-bind="click: findStock" 
+					    class="btn btn-success">Find</button>
+					<button 
+					    data-bind="click: findAllStocks" 
+					class="btn btn-success">Find All</button>
+					<button 
+					    data-bind="click: addStock" 
+					    class="btn btn-info">Add</button>
+					<button 
+					    data-bind="click: updateStock" 
+					    class="btn btn-info">Update</button>
+					<button  
+					    data-bind="click: removeStock" 
+					    class="btn btn-danger">Delete</button>
+				</div>
+			</div>
+		</div>
+		<p></p>
+		<div class="panel panel-primary">
+			<div class="panel-heading">
+				<h3 class="panel-title">Stocks</h3>
+			</div>
+			<div class="panel-body">
+			   <table class="table table-striped">
+			   		<thead>
+			   		   <tr>
+			   		      <th>Symbol</th>
+			   		      <th>Old Price</th>
+			   		      <th>New Price</th>
+			   		   </tr>
+			   		</thead>
+			   		<tbody data-bind="foreach: stocks">
+			   		   <tr>
+			   		      <td data-bind="text: symbol"></td>
+			   		      <td data-bind="text: price"></td>
+			   		      <td data-bind="text: newPrice"></td>
+			   		   </tr>
+			   		</tbody>
+			   </table>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
