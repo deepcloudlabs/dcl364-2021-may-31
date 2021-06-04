@@ -26,4 +26,8 @@ public final class FullName {
 		return last;
 	}
 
+	public String getFull() {
+		return first + " " + last;
+	}
+
 }

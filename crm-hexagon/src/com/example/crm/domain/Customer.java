@@ -1,8 +1,8 @@
 package com.example.crm.domain;
 
-import java.util.Arrays;
+import static java.util.stream.Collectors.toList;
+
 import java.util.List;
-import java.util.stream.Collectors;
 
 // DDD : Sub-domain -> Bounded Context -> Ubiquitous Language -> Model
 // DDD : Entity -> Persistent, i) Identity ii) Mutable
@@ -48,13 +48,13 @@ public class Customer {
 			return this;
 		}
 
-		public Builder phones(String... values) {
-			this.phones = Arrays.stream(values).map(Phone::of).collect(Collectors.toList());
+		public Builder phones(List<String> values) {
+			this.phones = values.stream().map(Phone::of).collect(toList());
 			return this;
 		}
 
-		public Builder addresses(String... values) {
-			this.addresses = Arrays.stream(values).map(Address::valueOf).collect(Collectors.toList());
+		public Builder addresses(List<String> values) {
+			this.addresses = values.stream().map(Address::valueOf).collect(toList());
 			return this;
 		}
 
